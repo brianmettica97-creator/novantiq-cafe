@@ -1,0 +1,358 @@
+<title>NOVANTIQ Café</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Sistema para cafeterías: carta con QR, pedidos a la barra, tarjeta de sellos, ruleta de premios, reseñas y panel del local.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230D3D3D'/%3E%3Cpath d='M16 6.5l8.2 4.75v9.5L16 25.5l-8.2-4.75v-9.5z' fill='%23fff'/%3E%3Cpath d='M12.6 20.5v-9h1.6l4.2 6v-6h1.6v9h-1.6l-4.2-6v6z' fill='%230D3D3D'/%3E%3Ccircle cx='24.5' cy='7.5' r='3' fill='%23B4F036'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Caprasimo&family=Figtree:ital,wght@0,400..800;1,400..600&family=JetBrains+Mono:wght@500;700&family=Young+Serif&display=swap">
+<style>
+{{CSS}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="ink" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feComponentTransfer in="n" result="speck"><feFuncA type="discrete" tableValues="0 0 1 1 1 1 1 1"/></feComponentTransfer>
+      <feComposite in="d" in2="speck" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a class="logo" href="#top" aria-label="NOVANTIQ Café, inicio">
+      <svg class="logo-mark" viewBox="0 0 40 40" width="34" height="34" aria-hidden="true"><path d="M20 4.5l12.8 7.4v14.8L20 34.1 7.2 26.7V11.9z" fill="#fff"/><path d="M14.6 27v-14h2.5l6.6 9.4V13h2.5v14h-2.5l-6.6-9.4V27z" fill="#0D3D3D"/><circle cx="33.4" cy="6.6" r="4.2" fill="#B4F036"/></svg>
+      <span class="logo-word">Novantiq <b>Café</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="#salon">El salón</a>
+      <a href="#demo">Demo</a>
+      <a href="#cuenta">Hacé la cuenta</a>
+      <a href="#incluye">Qué incluye</a>
+      <a href="#precios">Precios</a>
+      <a class="btn btn-accent btn-sm" href="#fundadores">Quiero mi demo</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero band-roast" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="badge"><span class="dot" aria-hidden="true"></span>Programa Fundadores para 10 cafeterías de la provincia</p>
+      <h1>Que tu café se vuelva costumbre</h1>
+      <p class="lead">Carta con QR en cada mesa, pedidos que llegan directo a la barra, tarjeta de sellos y una ruleta de premios. Todo con la marca de <strong data-cafe-name>tu café</strong> y sin comisión por pedido.</p>
+      <form class="personalize" id="cafe-form" autocomplete="off">
+        <label for="cafe-input">Escribí el nombre de tu café y miralo funcionando</label>
+        <div class="row">
+          <input id="cafe-input" name="cafe" maxlength="32" placeholder="Ej: La Esquina Café">
+          <button class="btn btn-accent" type="submit">Ver mi café</button>
+        </div>
+        <span class="hint" id="cafe-hint">La carta, la tarjeta de sellos y el panel cambian al instante.</span>
+      </form>
+      <div class="ctas">
+        <a class="btn btn-ghost" href="#demo">Probar la demo</a>
+        <a class="btn btn-ghost wa-link" href="#fundadores" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+      </div>
+    </div>
+    <figure class="hero-photo">
+      <div class="hero-shot">
+        <div class="kb">
+          <img src="{{IMG:hero}}" width="896" height="1120" fetchpriority="high" alt="Mesa de madera junto a la ventana con un café con arte latte, una medialuna y un jugo de naranja">
+          <canvas class="steam" id="hero-steam" aria-hidden="true"></canvas>
+          <button class="spot" type="button" data-spot="flatwhite" style="--x:36%;--y:57%" aria-label="Ver el flat white en la carta de la demo"><span class="sp-d" aria-hidden="true"></span><span class="sp-l">Flat white <b class="sp-p"></b></span></button>
+          <button class="spot" type="button" data-spot="jugo" style="--x:64%;--y:50%" aria-label="Ver el jugo de naranja en la carta de la demo"><span class="sp-d" aria-hidden="true"></span><span class="sp-l">Jugo de naranja <b class="sp-p"></b></span></button>
+          <button class="spot" type="button" data-spot="medialunas" style="--x:63%;--y:71%" aria-label="Ver las medialunas en la carta de la demo"><span class="sp-d" aria-hidden="true"></span><span class="sp-l">Medialunas <b class="sp-p"></b></span></button>
+        </div>
+      </div>
+      <div class="float f1" aria-hidden="true"><span class="fi">{{ICON:bell}}</span><span><b>Nuevo pedido</b> de la mesa 7</span></div>
+      <div class="float f2" aria-hidden="true"><span class="fi">{{ICON:stamp}}</span><span><b>+1 sello</b>, te faltan 2 para el regalo</span></div>
+      <div class="float f3" aria-hidden="true"><span class="fi">{{ICON:gift}}</span><span>Ganaste <b>una medialuna</b></span></div>
+      <div class="float f4" aria-hidden="true"><span class="fi star">{{ICON:star}}</span><span><b>4,8</b> en Google</span></div>
+      <figcaption class="hero-cap">Tocá un producto de la foto para verlo en la carta.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="salon" id="salon" aria-labelledby="salon-title">
+  <div class="wrap">
+    <div class="salon-head">
+      <h2 id="salon-title">Así se vive un día en tu café</h2>
+      <p class="lead">Una simulación del salón conectada a la demo: cada mesa escanea su QR, pide desde el celular y la comanda vuela a la barra. Tocá una mesa o a alguien del equipo para seguirlo con la cámara.</p>
+    </div>
+    <div class="salon-grid">
+      <div class="salon-stage">
+        <div class="sim-bar">
+          <div class="seg sim-mode" role="group" aria-label="Cómo trabaja el café">
+            <button type="button" data-mode="sys" aria-pressed="true">Con NOVANTIQ</button>
+            <button type="button" data-mode="nosys" aria-pressed="false">Sin sistema</button>
+          </div>
+          <div class="seg sim-cam" role="group" aria-label="Cámara">
+            <button type="button" data-cam="auto" aria-pressed="true">{{ICON:cam}}Cámara automática</button>
+            <button type="button" data-cam="all" aria-pressed="false">{{ICON:expand}}Ver todo</button>
+          </div>
+        </div>
+        <div class="sim-wrap">
+          <canvas id="sim" role="img" aria-label="Simulación del salón: mesas, barra, clientes que piden con el QR y el equipo trabajando"></canvas>
+          <div class="sim-phone" id="sim-phone" aria-hidden="true" hidden></div>
+          <div class="sim-card" id="sim-card" hidden></div>
+          <div class="sim-banner" id="sim-banner" aria-live="polite" hidden></div>
+          <div class="sim-hud" id="sim-hud" aria-live="off" hidden></div>
+          <div class="sim-zoom"><button type="button" id="z-in" aria-label="Acercar la cámara">{{ICON:plus}}</button><button type="button" id="z-out" aria-label="Alejar la cámara">{{ICON:minus}}</button></div>
+          <div class="sim-sum" id="sim-sum" hidden></div>
+          <div class="sim-edit-bar" id="sim-edit-bar" hidden><span class="ed-n"></span><span class="ed-x" aria-live="polite"></span><div><button class="btn btn-quiet btn-sm" type="button" data-ed="reset">Volver al original</button><button class="btn btn-accent btn-sm" type="button" data-ed="done">Listo</button></div></div>
+        </div>
+        <div class="sim-game" id="sim-game" hidden></div>
+        <div class="sim-controls">
+          <button class="btn btn-quiet btn-sm" type="button" id="sim-play" aria-pressed="false">{{ICON:pause}}Pausar</button>
+          <div class="sim-speed" role="group" aria-label="Velocidad de la simulación"><button type="button" data-sp="1" aria-pressed="true">1x</button><button type="button" data-sp="2" aria-pressed="false">2x</button><button type="button" data-sp="3" aria-pressed="false">3x</button></div>
+          <button class="btn btn-quiet btn-sm" type="button" id="sim-peak">{{ICON:users}}Hora pico</button>
+          <button class="btn btn-quiet btn-sm" type="button" id="sim-day" aria-pressed="false">{{ICON:sun}}Un día completo</button>
+          <button class="btn btn-quiet btn-sm" type="button" id="sim-sound" aria-pressed="false">{{ICON:mute}}Sonido</button>
+          <button class="btn btn-quiet btn-sm" type="button" id="sim-edit">{{ICON:layout}}Acomodar mesas</button>
+          <button class="btn btn-ink btn-sm" type="button" id="sim-game-btn">{{ICON:cup}}Jugar de barista</button>
+        </div>
+      </div>
+      <aside class="salon-side" aria-label="Lo que pasa en el salón">
+        <div class="sim-stats" id="sim-stats"></div>
+        <h3>Lo que está pasando</h3>
+        <ol class="sim-feed" id="sim-feed" aria-live="polite"></ol>
+        <p class="sim-note">{{ICON:pin}}<span>La mesa con el borde dorado sos vos. Pedí desde el celular de la demo y mirá cómo te lo preparan y te lo traen.</span></p>
+        <a class="btn btn-accent" href="#demo">Probar la demo</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="pains" aria-labelledby="pains-title">
+  <div class="wrap pains-wrap">
+    <figure class="pains-photo"><img data-parallax="-36" src="{{IMG:barista}}" width="614" height="768" loading="lazy" decoding="async" alt="Barista espumando leche en la máquina de espresso"></figure>
+    <div class="pains-body">
+      <h2 id="pains-title">Lo que le pasa hoy a muchas cafeterías</h2>
+      <div class="pain-grid">
+        <article class="pain"><h3>Clientes de una sola vez</h3><p>Vienen, prueban y no vuelven. No tenés su contacto ni una razón para que regresen.</p></article>
+        <article class="pain"><h3>Reseñas que no llegan</h3><p>El cliente contento se va sin escribir nada. El que tuvo un mal día, sí escribe.</p></article>
+        <article class="pain"><h3>La carta siempre atrasada</h3><p>Con cada aumento hay que reimprimir o tachar precios. Un QR que abre un PDF tampoco ayuda.</p></article>
+        <article class="pain"><h3>Las apps se llevan una parte</h3><p>Cada pedido para llevar que entra por una app de delivery deja un porcentaje en el camino.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-band" id="carta-fotos" aria-labelledby="menu-title">
+  <div class="wrap"><div class="menu-head">
+    <h2 id="menu-title">Tu carta, con las fotos de tus productos</h2>
+    <p class="lead">Cargamos tus fotos y tus precios, y cada mesa ve la carta al escanear el QR. Tocá una foto para abrirla en la demo.</p>
+  </div></div>
+  <div class="reel" aria-label="Fotos de la carta de ejemplo"><div class="reel-track" id="reel-track"></div></div>
+</section>
+
+<section class="demo" id="demo" aria-labelledby="demo-title">
+  <div class="wrap">
+    <div class="demo-head">
+      <div>
+        <h2 id="demo-title">Probalo como cliente y mirá qué pasa en la barra</h2>
+        <p class="lead">Es la carta de un café de ejemplo. Pedí algo, sumá sellos y girá la ruleta: todo llega al panel del local en el momento.</p>
+      </div>
+      <div class="demo-actions">
+        <button class="btn btn-ink" type="button" id="tour-btn">{{ICON:play}}Ver recorrido guiado</button>
+        <button class="btn btn-quiet" type="button" id="reset-btn">Reiniciar demo</button>
+      </div>
+    </div>
+    <div class="counter">
+      <div class="side side-client">
+        <p class="side-label">Lo que ve tu cliente en su celular</p>
+        <div class="phone" id="phone">
+          <div class="phone-island" aria-hidden="true"></div>
+          <div class="app" id="app" data-skin="cereza" aria-label="Demo de la app del café"></div>
+        </div>
+      </div>
+      <div class="side side-staff">
+        <p class="side-label">Lo que ves vos en el local</p>
+        <div class="panel" id="panel" aria-label="Panel del local"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="calc-sec band-roast" id="cuenta" aria-labelledby="calc-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="calc-title">¿Cuánto vale que un cliente vuelva una vez más?</h2>
+      <p class="lead">Mové los controles con los números de tu café.</p>
+    </div>
+    <div class="calc">
+      <div class="calc-in">
+        <div class="field">
+          <div class="field-top"><label for="c-clientes">Clientes por día</label><output id="o-clientes" for="c-clientes"></output></div>
+          <input type="range" id="c-clientes" min="30" max="400" step="10" value="120">
+        </div>
+        <div class="field">
+          <div class="field-top"><label for="c-ticket">Ticket promedio</label><output id="o-ticket" for="c-ticket"></output></div>
+          <input type="range" id="c-ticket" min="3000" max="25000" step="500" value="9500">
+        </div>
+        <div class="field">
+          <div class="field-top"><label for="c-vuelven">De cada 100 clientes, cuántos vuelven una vez más por mes</label><output id="o-vuelven" for="c-vuelven"></output></div>
+          <input type="range" id="c-vuelven" min="0" max="15" step="1" value="5">
+          <small>Es lo que busca la tarjeta de sellos: que el que vino una vez tenga un motivo para volver.</small>
+        </div>
+        <div class="field">
+          <div class="field-top"><label for="c-apps">Pedidos para llevar que hoy entran por apps, por semana</label><output id="o-apps" for="c-apps"></output></div>
+          <input type="range" id="c-apps" min="0" max="200" step="5" value="25">
+        </div>
+        <div class="field">
+          <div class="field-top"><label for="c-comision">Comisión que te cobra la app</label><output id="o-comision" for="c-comision"></output></div>
+          <input type="range" id="c-comision" min="0" max="35" step="1" value="25">
+        </div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div class="big"><span>Lo que podés sumar por mes</span><b id="r-total">$0</b></div>
+        <div class="bars">
+          <div class="bar-row"><div class="lbl"><span>Visitas extra de clientes del club</span><b id="r-visitas">$0</b></div><div class="track"><div class="fill f-a" id="b-visitas"></div></div></div>
+          <div class="bar-row"><div class="lbl"><span>Comisiones que dejás de pagar</span><b id="r-comis">$0</b></div><div class="track"><div class="fill f-b" id="b-comis"></div></div></div>
+          <div class="bar-row"><div class="lbl"><span>Plan Doble de NOVANTIQ Café</span><b id="r-plan">$0</b></div><div class="track"><div class="fill f-c" id="b-plan"></div></div></div>
+        </div>
+        <div class="facts">
+          <div><b id="r-cafes">0</b><span>cafés extra por mes pagan el plan</span></div>
+          <div><b id="r-extra">0</b><span>visitas extra por mes</span></div>
+        </div>
+        <p class="calc-note" id="calc-note"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="incluye" aria-labelledby="feat-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="feat-title">Todo lo que necesita un café, en un solo sistema</h2>
+      <p class="lead">Lo instalamos nosotros, con tu carta, tus fotos y tus precios. Vos solo lo usás.</p>
+    </div>
+    <div class="feat-grid">
+      <article class="feat"><span class="feat-ic">{{ICON:qr}}</span><h3>Carta con QR por mesa</h3><p>Cada mesa tiene su código. El cliente ve fotos, precios al día y lo que queda en stock.</p></article>
+      <article class="feat"><span class="feat-ic">{{ICON:ticket}}</span><h3>Pedidos directo a la barra</h3><p>La comanda aparece en la tablet de la barra con la leche, el tamaño y las aclaraciones.</p></article>
+      <article class="feat"><span class="feat-ic">{{ICON:bag}}</span><h3>Para llevar sin apps</h3><p>El cliente pide, elige a qué hora pasa y le avisamos cuando está listo.</p></article>
+      <article class="feat"><span class="feat-ic">{{ICON:stamp}}</span><h3>Tarjeta de sellos digital</h3><p>Un sello por café y el décimo de regalo. Sin cartoncitos que se pierden.</p></article>
+      <article class="feat"><span class="feat-ic">{{ICON:wheel}}</span><h3>Ruleta de premios</h3><p>Cada compra da un giro. Vos elegís los premios, cuántos salen y un tope por día.</p></article>
+      <article class="feat"><span class="feat-ic">{{ICON:star}}</span><h3>Más reseñas en Google</h3><p>Invitamos a todos a contar su experiencia, con un botón que abre directo tu perfil.</p></article>
+      <article class="feat"><span class="feat-ic">{{ICON:chat}}</span><h3>Opiniones privadas</h3><p>Si algo salió mal, te enterás vos primero y podés resolverlo en el día.</p></article>
+      <article class="feat"><span class="feat-ic">{{ICON:chart}}</span><h3>Tus números en el celular</h3><p>Ventas, horarios pico, lo más vendido y cuántos clientes vuelven.</p></article>
+      <article class="feat"><span class="feat-ic">{{ICON:percent}}</span><h3>Aumentos en un toque</h3><p>Subí toda la carta un porcentaje y queda redondeada al instante en todas las mesas.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="compare" aria-labelledby="cmp-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="cmp-title">Tu marca, tus clientes, tus números</h2>
+      <p class="lead">Las apps de delivery sirven para que te encuentren. Para que te elijan otra vez, el cliente tiene que ser tuyo.</p>
+    </div>
+    <div class="cmp-scroll">
+      <table class="cmp">
+        <thead><tr><th scope="col"><span class="sr">Comparación</span></th><th scope="col" class="us">NOVANTIQ Café</th><th scope="col">Apps de delivery</th><th scope="col">Carta en PDF o impresa</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Comisión por pedido</th><td class="us">No hay. Abono fijo</td><td>Un porcentaje de cada pedido</td><td>No hay</td></tr>
+          <tr><th scope="row">Datos del cliente</th><td class="us yes">Quedan en tu club</td><td>Quedan en la app</td><td class="no">No tenés ninguno</td></tr>
+          <tr><th scope="row">Precios al día</th><td class="us yes">Se cambian en segundos</td><td class="yes">Sí</td><td class="no">Hay que reimprimir</td></tr>
+          <tr><th scope="row">Pedido desde la mesa</th><td class="us yes">Sí, con el QR</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><th scope="row">Motivos para volver</th><td class="us yes">Sellos, ruleta y campañas</td><td>Promos de la app, para todos los locales</td><td class="no">Ninguno</td></tr>
+          <tr><th scope="row">Quién te atiende</th><td class="us">Nosotros, por WhatsApp y en tu local</td><td>Soporte de la plataforma</td><td>Nadie</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="precios" aria-labelledby="price-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="price-title">Abono fijo por mes, sin comisiones</h2>
+      <p class="lead">Pagás un abono por mes según el plan. La instalación incluye cargar tu carta con fotos, armar los QR de las mesas y capacitar a tu equipo.</p>
+    </div>
+    <div class="bill" role="group" aria-label="Forma de pago">
+      <button type="button" id="bill-m" aria-pressed="true">Mensual</button>
+      <button type="button" id="bill-a" aria-pressed="false">Anual <span class="save">2 meses gratis</span></button>
+    </div>
+    <div class="plans" id="plans"></div>
+    <div class="price-notes" id="price-notes"></div>
+  </div>
+</section>
+
+<section class="founders band-roast band-photo" id="fundadores" aria-labelledby="found-title">
+  <div class="band-bg" aria-hidden="true"><img data-parallax="-50" src="{{IMG:local}}" width="1408" height="768" alt="" loading="lazy" decoding="async"></div>
+  <div class="wrap founders-grid">
+    <div class="founder-box">
+      <h2 id="found-title">Buscamos 10 cafeterías fundadoras</h2>
+      <div class="seats" aria-label="10 lugares en el programa">{{SEATS}}</div>
+      <ul class="founder-list">
+        <li><b>Instalación sin cargo.</b> Te ahorrás los USD 120: cargamos tu carta con fotos y precios, armamos los QR de las mesas y capacitamos a tu equipo.</li>
+        <li><b>Primer mes de abono sin cargo.</b> Lo usás con tus clientes y empezás a pagar desde el segundo mes.</li>
+        <li><b>Precio congelado por 12 meses.</b> El abono en dólares no sube durante el primer año.</li>
+        <li><b>Línea directa.</b> Lo que tu café necesite, lo sumamos al sistema.</li>
+      </ul>
+    </div>
+    <div class="contact">
+      <h3>Pedí tu demo con el nombre de tu café</h3>
+      <p>Completá tus datos y te escribimos por WhatsApp con tu carta de prueba armada.</p>
+      <form id="lead-form" novalidate>
+        <label class="f" for="l-nombre">Tu nombre<input class="t" id="l-nombre" name="nombre" autocomplete="name" required></label>
+        <label class="f" for="l-cafe">Cafetería<input class="t" id="l-cafe" name="cafe" required></label>
+        <div class="two">
+          <label class="f" for="l-loc">Localidad<input class="t" id="l-loc" name="localidad" placeholder="La Plata, Quilmes, Tigre…"></label>
+          <label class="f" for="l-mesas">Mesas<select class="t" id="l-mesas" name="mesas"><option>Hasta 6</option><option selected>7 a 15</option><option>16 a 30</option><option>Más de 30</option></select></label>
+        </div>
+        <label class="f" for="l-plan">Plan que te interesa<select class="t" id="l-plan" name="plan"><option>Espresso</option><option selected>Doble</option><option>Tostadero</option><option>Todavía no sé</option></select></label>
+        <button class="btn btn-accent" type="submit">Armar mi mensaje</button>
+        <p class="form-out" id="lead-out" aria-live="polite"></p>
+      </form>
+      <p class="contact-line">WhatsApp de Novantiq: <span id="wa-text"></span> <button class="copy" type="button" data-copy="#wa-text">Copiar</button></p>
+      <p class="contact-line">Instagram: <a id="ig-link" href="https://www.instagram.com/novantiq.sa/" target="_blank" rel="noopener">@novantiq.sa</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="faq-sec" id="preguntas" aria-labelledby="faq-title">
+  <div class="wrap">
+    <h2 id="faq-title">Preguntas frecuentes</h2>
+    <div class="faq">
+      <details><summary>¿Tengo que comprar algún equipo?</summary><p>No. Tus clientes usan su propio celular. Para la barra alcanza con una tablet, un celular o la compu que ya tenés en la caja.</p></details>
+      <details><summary>¿Mis clientes tienen que bajarse una app?</summary><p>No. Escanean el QR de la mesa y la carta se abre en el navegador, con el nombre y los colores de tu café.</p></details>
+      <details><summary>¿La ruleta respeta las reglas de Google?</summary><p>Sí. Google no permite dar premios a cambio de reseñas ni pedirlas solo a los clientes contentos. Por eso el giro sale por la compra, no por la reseña, y la invitación a opinar en Google les llega a todos por igual. Así tus reseñas no corren riesgo de que las den de baja.</p></details>
+      <details><summary>¿Cómo se cobra el pedido?</summary><p>Como siempre, en la caja. El pedido llega a la barra con el total, y si querés sumar cobro con Mercado Pago lo vemos en la instalación.</p></details>
+      <details><summary>¿Puedo cambiar precios y productos yo?</summary><p>Sí, desde el panel. Podés cambiar un precio, marcar algo como agotado o subir toda la carta un porcentaje de una vez. Se actualiza al instante en todas las mesas.</p></details>
+      <details><summary>¿Y si alguien quiere sumar sellos de más?</summary><p>Los sellos los suma la barra al escanear el código del cliente, que cambia cada 30 segundos. Una captura de pantalla no sirve.</p></details>
+      <details><summary>¿Hay permanencia?</summary><p>Tres meses mínimos. Después seguís mes a mes y podés darlo de baja cuando quieras.</p></details>
+      <details><summary>¿Sirve si tengo más de un local?</summary><p>Sí. Con el plan Tostadero manejás varias sucursales, con la misma carta o una distinta para cada una.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-row">
+    <span>NOVANTIQ Café es un producto de Novantiq S.A.</span>
+    <span>Cereza es un café de ejemplo creado para esta demo. Las imágenes son de muestra.</span>
+  </div>
+</footer>
+
+<div class="tour" id="tour" hidden>
+  <div class="tour-ring" id="tour-ring" aria-hidden="true"></div>
+  <div class="tour-card" role="dialog" aria-live="polite" aria-labelledby="tour-text">
+    <div class="tour-top"><span class="tour-step" id="tour-step"></span><button class="icon-btn" type="button" id="tour-close" aria-label="Cerrar recorrido">{{ICON:close}}</button></div>
+    <p class="tour-text" id="tour-text"></p>
+    <div class="tour-bar"><span id="tour-progress"></span></div>
+    <div class="tour-actions">
+      <button class="btn btn-quiet btn-sm" type="button" id="tour-prev">Anterior</button>
+      <button class="btn btn-quiet btn-sm" type="button" id="tour-pause">Pausar</button>
+      <button class="btn btn-ink btn-sm" type="button" id="tour-next">Siguiente</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@2.0.4/dist/qrcode.js"></script>
+<script>
+{{JS}}
+</script>
